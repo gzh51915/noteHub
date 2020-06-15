@@ -1,0 +1,45 @@
+@charset "UTF-8";
+@function r($px) {
+    @return $px / 18.75 + rem;
+  }
+ul,li{
+    list-style: none;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.hotlist-content{
+    width: 95vw;
+    margin: auto ;
+    .hotlist-item{
+       display: flex;
+       width: 100%;
+       height: r(100);
+       padding: r(10) 0;
+       border-bottom: 1px solid 	#D3D3D3;
+       .hot-rank-img{
+           width: r(25);
+           height:  r(25);
+       }
+       .hot-rank{
+           padding:0px r(9);
+           font-weight: 600;
+           color: #666;
+           font-size: r(15);
+       }
+       .hot-title{
+           font-weight: 600;
+           font-size: r(18);
+           padding: 0 r(15) 0  r(10);
+           width: r(260);
+           
+           height: r(80);
+       }
+       .hot-img{
+           width: r(120);
+           height: r(70);
+           align-self: baseline;
+       }
+    }
+}

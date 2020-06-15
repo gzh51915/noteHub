@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Tabs, Badge } from "antd-mobile"
 import List from "../List"
+import HotList from "../../views/Home/HotList"
 export default class Header extends Component {
     render() {
         const tabs = [
@@ -21,11 +22,11 @@ export default class Header extends Component {
                         <List></List>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
-                        推荐
-              </div>
+                        <List></List>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
-                        热榜
-              </div>
+                        <HotList></HotList>
+                    </div>
                 </Tabs>
             </div >
         )

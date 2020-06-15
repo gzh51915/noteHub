@@ -1,0 +1,120 @@
+@function r($px) {
+    @return $px / 18.75 + rem;
+  }
+  *{
+      padding: 0;
+      margin: 0;
+  }
+  //个人信息栏
+.personal-info{
+  background: white;
+  padding: r(20) r(10);
+  border-radius: r(10);
+  margin-bottom: r(20);
+  //个人信息栏上半部
+  .info-top{
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: r(20);
+    position: relative;
+    //个人头像
+    .my-img{
+        width:r(70);
+        height: r(70);
+        border-radius: 50%;
+    }
+    //个人设置
+    .set-up{
+     position: absolute;
+     right: r(20);
+    }
+    //个人信息
+    .my-info{
+        width: r(200);
+        padding: 0 r(8);
+        //用户名
+        h1{
+            font-weight: 600;
+            font-size: r(20);
+            padding: 0;
+        }
+        //用户等级
+        .my-rank{
+            width: 60%;
+            height: r(25);   
+            background:#87CEEB;
+            border-radius: r(10);
+            img{
+                 width: r(10);
+                 height: r(10);
+                 vertical-align: middle;
+                 margin-left: r(5);
+            }
+            span{
+                font-size: 10px;
+                display: inline-block;
+                height: 100%;
+                line-height: r(25);
+                color:#4169E1;
+                font-weight: 600;
+            }
+        }
+    }
+  }
+  //个人信息栏下半部
+  .info-bottom{
+      ul{
+          display: flex;
+          height: r(50);
+          justify-content: space-around;
+          li{
+              width: 30%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              p{
+                  text-align: center;
+                  font-weight: 600;
+              }
+            &:nth-of-type(1), &:nth-of-type(2){
+                 border-right: 1px solid #666;
+              }
+          }
+     
+      }
+  }
+}
+//个人服务选项
+.personal-server{
+   border-radius: r(10);
+   margin-bottom: r(20);
+}
+//个人专题
+.personal-subject{
+    background: white;
+    .subject-header{
+        height:r(30);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            width: r(70);
+            height: 100%;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            img{
+                width: r(20);
+                height: r(20);
+                vertical-align: middle;
+            }
+            span{
+                display:inline-block;
+                height:100%;
+                line-height: r(30);
+                font-weight: 600;
+                vertical-align: middle;
+            }
+        }
+    }
+}

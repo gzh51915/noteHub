@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import { ListView } from 'antd-mobile';
-import { StickyContainer, Sticky } from 'react-sticky';
-
+import { ListView, Icon } from 'antd-mobile';
+import { StickyContainer } from 'react-sticky';
+import "./List.scss"
+import "../../assets/iconfonts/iconfont.css"
 const data = [
     {
         img: 'https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png',
-        title: 'Meet hotel',
-        des: '不是所有的兼职汪都需要风吹日晒',
+        title: 'iphone的摄影能力现在什么水平',
+        des: '手持iphone 11 pro Max和华为P40 pro,感觉我作为手机的主人,最大的困惑不是手头的手机摄影能力有多高水平，而是自己的摄影能力配不上手机的技术潜力！',
     },
     {
         img: 'https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png',
-        title: 'McDonald\'s invites you',
-        des: '不是所有的兼职汪都需要风吹日晒',
+        title: '如何写一个反俗套的武侠故事',
+        des: '张知秋是天下第一剑客，他有一个秘密，世上只有三个人知道。他不会武功，这场欺骗武林十年的骗局,终于到了谢幕的时候，他出道十年，专杀败类，有人说，他的剑下亡魂不计可数',
     },
     {
         img: 'https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png',
-        title: 'Eat the week',
-        des: '不是所有的兼职汪都需要风吹日晒',
+        title: '有哪些应该坚持的好习惯',
+        des: '去拜访别人不能空手去，哪怕去便利店买些水果和饮料，养成存钱的习惯，无论收入多少，都要存一部分对抗意外，早上醒来不要立马玩手机，可以立马起床刷牙，不仅能提升效率，还能让身心更健康',
     },
 ];
 const NUM_SECTIONS = 5;
@@ -70,10 +71,10 @@ export default class List extends Component {
         setTimeout(() => {
             genData();
             this.setState({
-                dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs, sectionIDs, rowIDs),
+                dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlobs),
                 isLoading: false,
             });
-        }, 600);
+        }, 100);
     }
 
     // If you use redux, the data maybe at props, you need use `componentWillReceiveProps`
@@ -125,19 +126,20 @@ export default class List extends Component {
                     <div
                         style={{
                             lineHeight: '50px',
-                            color: '#888',
-                            fontSize: 18,
+                            color: 'black',
+                            fontSize: 15,
                             borderBottom: '1px solid #F6F6F6',
+                            fontWeight: 600
                         }}
                     >{obj.title}</div>
-                    <div style={{ display: '-webkit-box', display: 'flex', padding: '15px 0' }}>
-                        <img style={{ height: '64px', marginRight: '15px' }} src={obj.img} alt="" />
-                        <div style={{ lineHeight: 1 }}>
-                            <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>{obj.des}</div>
-                            <div><span style={{ fontSize: '30px', color: '#FF6E27' }}>35</span>¥ {rowID}</div>
+                    <div style={{ display: '-webkit-box', display: 'flex', padding: '10px 0' }} className="List-item">
+                        <div className="item-header"><img style={{ height: '20px', marginRight: '5px', borderRadius: '50%' }} src={obj.img} alt="" /> <span>叶卓斌</span></div>
+                        <div style={{ position: "relative" }} >
+                            <div style={{ marginBottom: '8px', fontWeight: "200", fontSize: "13px", color: "black", width: "100%", overflow: "hidden", textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: "3", WebkitBoxOrient: "vertical" }}>{obj.des}</div>
+                            <div style={{ width: "100%" }}><span className="approve">1.6万赞同 <span className="iconfont icon-zan2"></span></span>&nbsp;&nbsp;&nbsp;<span className="comment">866评论 <span className="iconfont icon-pinglun"></span></span></div>
                         </div>
                     </div>
-                </div>
+                </div >
             );
         };
 
@@ -155,27 +157,8 @@ export default class List extends Component {
                         style={{ zIndex: 4 }}
                     />
                 )}
-                renderSectionHeader={sectionData => (
-                    <Sticky>
-                        {({
-                            style,
-                        }) => (
-                                <div
-                                    className="sticky"
-                                    style={{
-                                        ...style,
-                                        zIndex: 3,
-                                        backgroundColor: parseInt(sectionData.replace('Section ', ''), 10) % 2 ?
-                                            '#5890ff' : '#F8591A',
-                                        color: 'white',
-                                    }}
-                                >{`Task ${sectionData.split(' ')[1]}`}</div>
-                            )}
-                    </Sticky>
-                )}
-                renderHeader={() => <span>header</span>}
                 renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
-                    {this.state.isLoading ? 'Loading...' : 'Loaded'}
+                    {this.state.isLoading ? 'Loading...' : '已加载全部内容'}
                 </div>)}
                 renderRow={row}
                 renderSeparator={separator}

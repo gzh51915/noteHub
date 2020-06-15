@@ -9,6 +9,7 @@ import myactive from "assets/images/myinfo-active.png"
 import dis from "assets/images/discover.png"
 import disactive from "assets/images/discover-active.png"
 import Home from "../../views/Home"
+import Myinfo from "../../views/Myinfo"
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -152,6 +153,7 @@ export default class Navbar extends React.Component {
                             });
                         }}
                     >
+                        <Myinfo></Myinfo>
                     </TabBar.Item>
                 </TabBar>
             </div>
