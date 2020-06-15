@@ -1,0 +1,14 @@
+
+.login-container{
+    
+}
+.login-container .input-box{
+    padding: 0 15px;
+}
+.login-container input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #EEE;
+    padding: 15px 0;
+    font-size: 18px;
+}
