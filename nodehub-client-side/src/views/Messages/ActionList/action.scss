@@ -1,0 +1,67 @@
+@charset "UTF-8";
+@function r($px) {
+    @return ($px/750) * 100vw;
+  }
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.action-item{
+     border-bottom: 1px solid #D8D8D8;
+     padding-bottom: r(20);
+     //开头
+     .item-header{
+     padding-top: r(20);
+     img{
+         width: r(40);
+         height: r(40);
+         vertical-align: middle;
+         margin-right: r(20);
+     }
+     span{
+        font-size: r(20);
+        color: #BDBDBD;
+     }
+     h1{
+         font-size: r(30);
+         color: black;
+     }
+     }
+     //回答内容
+     .item-answer{
+         padding: r(20);
+        background: #F2F2F2;
+        display: flex;
+        flex-direction: column;
+         justify-content: space-around;
+         align-items: center;
+         height: r(180);
+         border-radius: r(20);
+         //头像区域
+        .item-user{
+            width: 100%;
+            img{
+                width: r(50);
+                height: r(50);
+                border-radius: 50%;
+                vertical-align: middle;
+            }
+            span{
+                font-size: r(20);
+               display: inline-block;
+               height: r(25);
+               line-height: r(25);
+              font-weight: 600;
+            }
+        }
+        p{
+            overflow: hidden;
+            width: 100%;
+            text-overflow: ellipsis;
+           display: -webkit-box;
+           -webkit-line-clamp: 2;
+           -webkit-box-orient: vertical;
+           font-size: r(28);
+        }
+     }
+    }

@@ -82,12 +82,43 @@ export default class index extends Component {
                             <div className="title">
                                 <img src={require("assets/images/book.png")} alt="" /><span>专题</span>
                             </div>
-                            <div>
+                            <div className="more">
                                 <span>查看更多 ></span>
                             </div>
                         </div>
                         <ul className="subject-content">
-                            <li></li>
+                            <li>
+                                <div className="content-title">
+                                    <img src={require("assets/images/subject.jpg")} alt="" /> <h1>复赛：冠军照常升起</h1>
+                                </div>
+                                <div className="content-follow">
+                                    <span>124万关注</span>·<span>20关注</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="content-title">
+                                    <img src={require("assets/images/subject.jpg")} alt="" /> <h1>复赛：冠军照常升起</h1>
+                                </div>
+                                <div className="content-follow">
+                                    <span>124万关注</span>·<span>20关注</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="content-title">
+                                    <img src={require("assets/images/subject.jpg")} alt="" /> <h1>复赛：冠军照常升起</h1>
+                                </div>
+                                <div className="content-follow">
+                                    <span>124万关注</span>·<span>20关注</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="content-title">
+                                    <img src={require("assets/images/subject.jpg")} alt="" /> <h1>复赛：冠军照常升起</h1>
+                                </div>
+                                <div className="content-follow">
+                                    <span>124万关注</span>·<span>20关注</span>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </WingBlank>

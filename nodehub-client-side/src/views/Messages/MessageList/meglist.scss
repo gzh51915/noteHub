@@ -1,0 +1,30 @@
+@charset "UTF-8";
+@function r($px) {
+    @return ($px/750) * 100vw;
+  }
+  *{
+      padding: 0px;
+      margin: 0px;
+  }
+  ul,li{
+ list-style: none;
+  }
+
+  .meg-item{
+      height: r(150);
+      border-bottom: 1px solid #D3D3D3;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      img{
+          width: r(100);
+          height: r(100);
+          border-radius: 50%;
+          margin-left: r(10);
+      }
+      span{
+          margin-left: r(20);
+          font-size: r(25);
+      }
+  }
+

@@ -1,24 +1,36 @@
 import React, { Component } from 'react'
 import { Tabs, Badge } from "antd-mobile"
-import List from "../List"
-import HotList from "../../views/Home/HotList"
+
 export default class Header extends Component {
+    constructor(props) {
+        super();
+        this.state = {
+            tabList: [],
+            componentList: []
+        }
+    }
+
+    componentDidMount() {
+        let title = this.props.title;
+        let componentList = this.props.componentList
+        this.setState({
+            tabList: title.map((item) => ({ title: <Badge >{item}</Badge> })),
+            componentList
+        })
+    }
     render() {
-        const tabs = [
-            { title: <Badge >关注</Badge> },
-            { title: <Badge >推荐</Badge> },
-            { title: <Badge >热榜</Badge> },
-        ];
+        const { tabList, componentList } = this.state;
+
         return (
             <div>
                 <Tabs
 
-                    tabs={tabs}
+                    tabs={tabList}
                     initialPage={0}
                     onChange={(tab, index) => { console.log('onChange', index, tab); }}
                     onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
                 >
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
+                    {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
                         <List></List>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
@@ -26,7 +38,12 @@ export default class Header extends Component {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
                         <HotList></HotList>
-                    </div>
+                    </div> */}
+                    {
+                        componentList ? componentList.map((item) => (<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 'auto', backgroundColor: '#fff' }}>
+                            {item}
+                        </div>)) : null
+                    }
                 </Tabs>
             </div >
         )

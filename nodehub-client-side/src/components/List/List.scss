@@ -1,11 +1,11 @@
 @function r($px) {
-    @return $px / 18.75 + rem;
+    @return ($px/750) * 100vw;
   }
 .List-item{
     flex-direction: column;
+    margin-bottom: r(20);
     .approve{
     font-size: 12px;
-   
         .icon-zan2{
             vertical-align:top;
             display: inline-block;
@@ -20,10 +20,12 @@
         }
     }
     .item-header{
-        height:r(25);
+        height:r(40);
         width: 100%;
         display: flex;
         justify-content: start;
+        margin-bottom: r(20);
+        align-items: center;
         img{
             vertical-align: baseline;
         }

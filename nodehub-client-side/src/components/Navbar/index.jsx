@@ -10,6 +10,7 @@ import dis from "assets/images/discover.png"
 import disactive from "assets/images/discover-active.png"
 import Home from "../../views/Home"
 import Myinfo from "../../views/Myinfo"
+import Messages from "../../views/Messages"
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -140,6 +141,7 @@ export default class Navbar extends React.Component {
                             });
                         }}
                     >
+                        <Messages></Messages>
                     </TabBar.Item>
                     <TabBar.Item
                         icon={{ uri: `${my}` }}
