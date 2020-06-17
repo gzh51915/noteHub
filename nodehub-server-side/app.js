@@ -1,8 +1,14 @@
 const express = require('express')
 const app = express()
-const port = 3005
-const router = require('./routes')
+const port = 4444
+// 引入路由
+// const backStageRouter = require('./routes/backStage')
+const routes = require('./routes')
+const routeStatic = require('./routes/static')
+// post请求中间件
 const bodyParser = require('body-parser');
+// 引入cookie
+const cookieParser = require('cookie-parser'); 
 // 跨域处理==================================================
 app.all("*", function (req, res, next) {
     //设置允许跨域的域名  
@@ -16,12 +22,17 @@ app.all("*", function (req, res, next) {
     if (req.method.toLowerCase() == 'options') res.send(200); //让options尝试请求快速结束
     else next();
 })
+// cookie处理
+app.use(cookieParser())
 // post请求处理==============================================
 app.use(bodyParser.json());// 添加json解析
 app.use(bodyParser.urlencoded({ extended: false }));
 // 路由处理
-app.use('/api',router)
+app.use('/api', routes)
+app.use('/api/source',routeStatic)
+
 // 监听服务器状态
+//  http://10.3.135.11:4444/api
 app.listen(port, () => {
-    console.log(`http://127.0.0.1:${port} running...`)
+    console.log(`======= http://127.0.0.1:${port} running =======`)
 })

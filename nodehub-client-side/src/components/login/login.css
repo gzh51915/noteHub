@@ -1,9 +1,17 @@
 
 .login-container{
-    
+    /* padding: 0 15px; */
 }
-.login-container .input-box{
+.login-container .main-box{
     padding: 0 15px;
+}
+/* 输入框 */
+.login-container .input-box{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
 }
 .login-container input{
     width: 100%;
@@ -11,4 +19,49 @@
     border-bottom: 1px solid #EEE;
     padding: 15px 0;
     font-size: 18px;
+    outline: none;
+}
+.login-container input::-webkit-input-placeholder{
+    color:#c4c4c4;
+}
+.login-container input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#c4c4c4;
+}
+.login-container input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#c4c4c4;
+}
+.login-container input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+    color:#c4c4c4;
+}
+
+.login-container .main-box .other{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: #bdbdbd;
+    padding: 20px 0;
+    height: 18vh;
+}
+.login-container .main-box .other>div{
+    margin-top: 2vh;
+    /* margin-bottom: 5vh; */
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.login-container .main-box .other>div i{
+    font-size: 15vw;
+    color: #04ce6a;
+}
+
+.login-container .main-box > p{
+    text-align: center;
+    font-size: 16px;
+    color: #9a9a9a;
+    line-height: 25px;
+    margin-top: 5vh;
+}
+.login-container .main-box span{
+    color: #45588c;
 }

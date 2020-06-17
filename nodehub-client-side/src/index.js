@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App';
-// import './static/css/index.css'
-import 'antd-mobile/dist/antd-mobile.css'; 
-ReactDOM.render(<App/>,
+import App from './views/app';
+import 'antd-mobile/dist/antd-mobile.css';
+import './assets/iconfont/iconfont.css'
+import { Provider } from 'react-redux'
+import store from './redux/store.js'
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
