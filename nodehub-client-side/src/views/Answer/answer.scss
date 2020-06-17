@@ -1,0 +1,148 @@
+@charset "UTF-8";
+@function r($px) {
+    @return ($px/750) * 100vw;
+  }
+  *{
+      margin: 0;
+      padding: 0;
+  }
+  ul,li{
+      list-style: none;
+  }
+
+  //页面开头
+  .answer-header{
+     
+     position: relative;
+     height: r(40);
+     //左边部分
+     .header-left{
+         width: r(40);
+         position: absolute;
+         left: 0;
+         height: r(40);
+         span{
+             font-size: r(40);
+         }
+     }
+     //右边部分
+     .header-right{
+         position: absolute;
+         right: 0;
+         width: r(200);
+         display: flex;
+         height: r(40);
+         justify-content: space-around;
+         align-items: center;
+         span{
+             font-size: r(40);
+         }
+     }
+  }
+  .answer-title{
+      margin-bottom: r(20);
+    .question-title{
+          font-weight: 600;
+          font-size: r(35);
+          padding: r(20) 0;
+      }
+      p{
+          font-size: r(25);
+          color: #A4A4A4;
+          padding-bottom:r(15);
+      }
+      ul{
+          border-top: 1px solid #BDBDBD;
+          border-bottom: 1px solid #BDBDBD;
+          display: flex;
+         height: r(80);
+         align-items: center;
+          li{
+               float: left;
+               flex: 1;
+               height: 100%;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+            img{
+                width: r(30);
+                height: r(30);
+            }
+            span{
+                font-size: r(25);
+                color: #0080FF;
+                padding: 0 r(10);
+            }
+            &:nth-of-type(1){
+                border-right:1px solid #BDBDBD;
+            }
+          }
+      }
+    }
+  .answer-content{
+      //回答用户
+      .answer-user{
+          height: r(100);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .answer-img{
+              height: 100%;
+              display: flex;
+              align-items: center;
+              width: r(300);
+              justify-content: space-around;
+                //头像
+          img{
+              width: r(100);
+              height: r(100);
+              border-radius: 50%;
+          
+          }
+          //用户信息
+          .answer-user-info{
+              width: r(150);
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+     
+              
+              span{
+                  &:nth-child(1){
+                      font-size: r(20);
+                      font-weight: 600;
+                  }
+                  &:nth-child(2){
+                      font-size: r(15);
+                      color: #A4A4A4;
+                  }
+              }
+          }
+          }
+        
+          //关注
+          .answer-user-follow{
+          
+            width: r(150);
+            height: r(60);
+            background: #D8D8D8;
+            border-radius: r(15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+                color: #0080FF;
+                font-size: r(26);
+            }
+          }
+      }
+      //回答内容
+      .answer-text{
+          font-size: r(30);
+          padding-top: r(10);
+          padding-bottom: r(20);
+          text-indent: r(40);
+      }
+  }
+ 

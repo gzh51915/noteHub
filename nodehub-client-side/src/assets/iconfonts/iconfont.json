@@ -146,6 +146,13 @@
       "unicode_decimal": 58889
     },
     {
+      "icon_id": "11626506",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
       "icon_id": "11637896",
       "name": "电视",
       "font_class": "dianshi",
@@ -188,6 +195,13 @@
       "unicode_decimal": 59100
     },
     {
+      "icon_id": "12462330",
+      "name": "点赞后",
+      "font_class": "zan1",
+      "unicode": "e516",
+      "unicode_decimal": 58646
+    },
+    {
       "icon_id": "13279036",
       "name": "影视",
       "font_class": "yingshi1",
@@ -200,6 +214,13 @@
       "font_class": "chaoliufan",
       "unicode": "e621",
       "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "13525440",
+      "name": "返 回",
+      "font_class": "fanhui-copy-copy",
+      "unicode": "e538",
+      "unicode_decimal": 58680
     }
   ]
 }

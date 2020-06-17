@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @function r($px) {
-    @return $px / 18.75 + rem;
+    @return ($px/750) * 100vw;
   }
 ul,li{
     list-style: none;
@@ -9,37 +9,41 @@ ul,li{
     margin: 0;
     padding: 0;
 }
+//热榜内容
 .hotlist-content{
     width: 95vw;
     margin: auto ;
+    //单项热榜
     .hotlist-item{
        display: flex;
        width: 100%;
-       height: r(100);
-       padding: r(10) 0;
+       height: r(150);
+       padding: r(20) 0;
        border-bottom: 1px solid 	#D3D3D3;
+       align-items: center;
+       justify-content: space-around;
+       //热榜排名
        .hot-rank-img{
-           width: r(25);
-           height:  r(25);
+           width: r(50);
+           height:  r(50);
        }
        .hot-rank{
-           padding:0px r(9);
+           padding:0px r(20);
            font-weight: 600;
            color: #666;
-           font-size: r(15);
+           font-size: r(25);
        }
        .hot-title{
            font-weight: 600;
-           font-size: r(18);
+           font-size: r(30);
            padding: 0 r(15) 0  r(10);
-           width: r(260);
-           
-           height: r(80);
+         
        }
        .hot-img{
-           width: r(120);
-           height: r(70);
+           width: r(220);
+           height: r(120);
            align-self: baseline;
+          
        }
     }
 }

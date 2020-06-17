@@ -11,6 +11,7 @@ import disactive from "assets/images/discover-active.png"
 import Home from "../../views/Home"
 import Myinfo from "../../views/Myinfo"
 import Messages from "../../views/Messages"
+import Answer from "../../views/Answer"
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -113,6 +114,7 @@ export default class Navbar extends React.Component {
                             });
                         }}
                     >
+                        <Answer></Answer>
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
