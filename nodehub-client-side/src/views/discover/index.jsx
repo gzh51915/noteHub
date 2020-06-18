@@ -16,7 +16,7 @@ class Index extends Component {
         }
     }
     componentDidMount() {
-        this.props.getSubarea(getSubareaAsync('/getSubareaData'))
+        this.props.getSubareaAsync('/getSubareaData')
     }
     render() {
         const { tabs } = this.state
@@ -38,9 +38,9 @@ class Index extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getSubarea: (action) => dispatch(action)
-    }
-}
-export default connect(null,mapDispatchToProps)(Index)
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         getSubarea: (action) => dispatch(action)
+//     }
+// }
+export default connect(null,{getSubareaAsync})(Index)

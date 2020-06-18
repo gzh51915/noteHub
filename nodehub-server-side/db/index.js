@@ -32,12 +32,12 @@ const adminSchema = new Schema({
 const userSchema = new Schema({
     id: {
         type: String,
-        required: true,
+        required: true
     },
     username: {
         type: String,
         required: true,
-        trim: true
+		  trim: true
     },
     nickname: {
         type: String,
@@ -172,7 +172,7 @@ const answerSchma = new Schema({
 // 管理员集合对象
 const adminModel = mongoose.model('admin', adminSchema)
 // 用户集合对象
-const userModel = mongoose.model('user', userSchema)
+const userModel = mongoose.model('users', userSchema)
 // 分区集合对象
 const subareaModel = mongoose.model('subarea', subareaSchma)
 // 问题集合对象

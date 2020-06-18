@@ -1,9 +1,9 @@
-.login-container{
+.register-container{
     width: 100%;
     height: 100%;
     position: relative;
 }
-.login-container .header{
+.register-container .header{
     width: 100%;
     height: 25vh;
     background-color: #0084ff;
@@ -14,21 +14,40 @@
     color: #fff;
     position: relative;
 }
-.login-container .header i{
+.register-container .header i{
     position: absolute;
     right: 0;
     top: 0;
     padding: 12px;
     font-size: 24px;
 }
-.login-container .content-box{
-    padding: 0 2vw;
-}
-.login-container .gologin-box{
+.register-container .content-box{
     padding: 0 2vw;
 }
 
-.login-container .footer-box{
+.register-container .content-box .smsCode-box{
+    background-color: sandybrown;
+    position: relative;
+}
+.register-container .content-box .smsCode-box span{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #0084ff;
+    color: #fff;
+    height: 100%;
+    /* padding: 0 8px; */
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+    width: 25vw;
+}
+.register-container .gologin-box{
+    padding: 0 2vw;
+}
+
+.register-container .footer-box{
     position: fixed;
     bottom: 0;
     left: 0;
@@ -39,7 +58,7 @@
     align-items: center;
     padding: 0 10px;
 }
-.login-container .footer-box p{
+.register-container .footer-box p{
     text-align: center;
     color: #999;
     font-size: 14px;

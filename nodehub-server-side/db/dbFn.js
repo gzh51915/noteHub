@@ -1,19 +1,19 @@
-
 /**
  * 查找单条数据封装
  * @param {String} model 查询的文档 
  * @param {Object} params 查询的参数
  */
 function findOneFn(model, params) {
-    return new Promise((resolve, reject) => {
-        model.findOne(params, (err, doc) => {
-            if (err) {
-                reject(err)
-            } else {
-                resolve(doc)
-            }
-        })
-    })
+	// console.log(params)
+	return new Promise((resolve, reject) => {
+		model.findOne(params, (err, doc) => {
+			if (err) {
+				reject(err)
+			} else {
+				resolve(doc)
+			}
+		})
+	})
 }
 
 /**
@@ -22,12 +22,12 @@ function findOneFn(model, params) {
  * pagesize ：每页显示条数
  */
 function findAllFn(model, page = 0, pagesize = 50) {
-    return new Promise((resolve, reject) => {
-        model.find({}, (err, doc) => {
-            if (err) reject(err)
-            else resolve(doc)
-        }).limit(pagesize).skip(page * pagesize)
-    })
+	return new Promise((resolve, reject) => {
+		model.find({}, (err, doc) => {
+			if (err) reject(err)
+			else resolve(doc)
+		}).limit(pagesize).skip(page * pagesize)
+	})
 }
 /**
  * 条件查询
@@ -35,40 +35,55 @@ function findAllFn(model, page = 0, pagesize = 50) {
  * @param {Object} params 
  */
 function conditionQueryFn(model, params = {}) {
-    return new Promise((resolve, reject) => {
-        model.find(params, (err, doc) => {
-            if (err) reject(err)
-            else resolve(doc)
-        })
-    })
+	return new Promise((resolve, reject) => {
+		model.find(params, (err, doc) => {
+			if (err) reject(err)
+			else resolve(doc)
+		})
+	})
 }
 
 // 删除一个
 function deleteOneFn(model, id) {
-    return new Promise((resolve, reject) => {
-        model.deleteOne(id, (err,doc) => {
-            if (err) reject(err)
-            else resolve(doc)
-        })
-    })
+	return new Promise((resolve, reject) => {
+		model.deleteOne(id, (err, doc) => {
+			if (err) reject(err)
+			else resolve(doc)
+		})
+	})
 }
 
-// 总量
+// 获取总量
 function findCountFn(model) {
-    return new Promise((resolve, reject) => {
-        model.find({}, (err, doc) => {
-            if (err) reject(err)
-            else resolve(doc)
-        }).count()
-    })
+	return new Promise((resolve, reject) => {
+		model.find({}, (err, doc) => {
+			if (err) reject(err)
+			else resolve(doc)
+		}).count()
+	})
 }
 
-
+// 更新数据
+function updateOneFn(model, id, obj) {
+	return new Promise((resolve, reject) => {
+		model.updateOne({
+			id
+		}, {
+			$set: {
+				...obj
+			}
+		}, (err, doc) => {
+			if (err) reject(err)
+			else resolve(doc)
+		})
+	})
+}
 
 module.exports = {
-    findOneFn,
-    findAllFn,
-    findCountFn,
-    conditionQueryFn,
-    deleteOneFn
+	findOneFn,
+	findAllFn,
+	findCountFn,
+	conditionQueryFn,
+	deleteOneFn,
+	updateOneFn
 }
