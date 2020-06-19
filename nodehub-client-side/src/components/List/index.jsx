@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ListView, Icon } from 'antd-mobile';
+import { ListView } from 'antd-mobile';
 import { StickyContainer } from 'react-sticky';
 import "./List.scss"
 import "../../assets/iconfonts/iconfont.css"
@@ -76,19 +76,7 @@ export default class List extends Component {
             });
         }, 100);
     }
-
-    // If you use redux, the data maybe at props, you need use `componentWillReceiveProps`
-    // componentWillReceiveProps(nextProps) {
-    //   if (nextProps.dataSource !== this.props.dataSource) {
-    //     this.setState({
-    //       dataSource: this.state.dataSource.cloneWithRowsAndSections(nextProps.dataSource),
-    //     });
-    //   }
-    // }
-
     onEndReached = (event) => {
-        // load new data
-        // hasMore: from backend data, indicates whether it is the last page, here is false
         if (this.state.isLoading && !this.state.hasMore) {
             return;
         }
@@ -115,6 +103,11 @@ export default class List extends Component {
                 }}
             />
         );
+        const locale = {
+            prevText: 'Prev',
+            nextText: 'Next',
+        };
+
         let index = data.length - 1;
         const row = (rowData, sectionID, rowID) => {
             if (index < 0) {
@@ -135,11 +128,12 @@ export default class List extends Component {
                     <div style={{ display: '-webkit-box', display: 'flex', padding: '10px 0' }} className="List-item">
                         <div className="item-header"><img style={{ height: '20px', marginRight: '5px', borderRadius: '50%' }} src={obj.img} alt="" /> <span>叶卓斌</span></div>
                         <div style={{ position: "relative" }} >
-                            <div style={{ marginBottom: '8px', fontWeight: "200", fontSize: "13px", color: "black", width: "100%", overflow: "hidden", textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: "3", WebkitBoxOrient: "vertical" }}>{obj.des}</div>
+                            <div style={{ marginBottom: '8px', fontWeight: "200", fontSize: "13px", color: "black", width: "100%", overflow: "hidden", textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: "3", WebkitBoxOrient: "vertical" }} >{obj.des}</div>
                             <div style={{ width: "100%" }}><span className="approve">1.6万赞同 <span className="iconfont icon-zan2"></span></span>&nbsp;&nbsp;&nbsp;<span className="comment">866评论 <span className="iconfont icon-pinglun"></span></span></div>
                         </div>
                     </div>
                 </div >
+
             );
         };
 

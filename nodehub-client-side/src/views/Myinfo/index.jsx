@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom"
 import "./myinfo.scss"
-import { Grid, WingBlank } from 'antd-mobile';
-export default class index extends Component {
+import { Grid, WingBlank, Popover } from 'antd-mobile';
+const Item = Popover.Item;
+const Myinfo = class index extends Component {
     state = {
         serverList: [
             {
@@ -39,6 +41,9 @@ export default class index extends Component {
 
         ]
     }
+    handleUser = () => {
+        console.log(this.props);
+    }
     render() {
         const { serverList } = this.state
         return (
@@ -54,7 +59,12 @@ export default class index extends Component {
                                 </div>
                             </div>
                             <div className="set-up">
-                                <span className="iconfont icon-shenglvehao"></span>
+                                <Popover mask overlay={[
+                                    (<Item key="1" value="loginout" data-seed="logId">退出登录</Item>),
+                                ]}>
+                                    <span className="iconfont icon-shenglvehao" onClick={this.handleUser}></span>
+                                </Popover>
+
                             </div>
                         </div>
                         <div className="info-bottom">
@@ -126,3 +136,4 @@ export default class index extends Component {
         )
     }
 }
+export default withRouter(Myinfo)

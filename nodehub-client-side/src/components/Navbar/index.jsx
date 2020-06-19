@@ -1,4 +1,4 @@
-import { TabBar } from 'antd-mobile';
+import { TabBar, Toast } from 'antd-mobile';
 import React from "react"
 import home from "assets/images/home.png"
 import homeactive from "assets/images/home-active.png"
@@ -11,53 +11,22 @@ import disactive from "assets/images/discover-active.png"
 import Home from "../../views/Home"
 import Myinfo from "../../views/Myinfo"
 import Messages from "../../views/Messages"
-import Answer from "../../views/Answer"
+import Discovery from "../../views/Discovery"
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedTab: 'Home',
-            hidden: false,
-            fullScreen: false,
-        };
     }
-
-    renderContent(pageText) {
-        return (
-            <div style={{ backgroundColor: 'white', height: '80%', textAlign: 'center' }}>
-                <div style={{ paddingTop: 60 }}>Clicked “{pageText}” tab， show “{pageText}” information</div>
-                <a style={{ display: 'block', marginTop: 40, marginBottom: 20, color: '#108ee9' }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        this.setState({
-                            hidden: !this.state.hidden,
-                        });
-                    }}
-                >
-                    Click to show/hide tab-bar
-        </a>
-                <a style={{ display: 'block', marginBottom: 600, color: '#108ee9' }}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        this.setState({
-                            fullScreen: !this.state.fullScreen,
-                        });
-                    }}
-                >
-                    Click to switch fullscreen
-        </a>
-            </div>
-        );
+    componentDidMount() {
+        this.props.history.push("/home")
     }
-
     render() {
+        const pathname = this.props.location.pathname
         return (
-            <div style={{ position: 'fixed', height: '92%', width: '100%', bottom: 0 }}>
+            <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
                 <TabBar
                     unselectedTintColor="#949494"
                     tintColor="#33A3F4"
                     barTintColor="white"
-                    hidden={this.state.hidden}
                 >
                     <TabBar.Item
                         title="首页"
@@ -76,16 +45,20 @@ export default class Navbar extends React.Component {
                         }}
                         />
                         }
-                        selected={this.state.selectedTab === 'Home'}
+                        selected={pathname === "/home"}
 
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'Home',
+                            this.props.history.push("/home")
+                            Toast.loading('Loading...', 1, () => {
+                                console.log('Load complete !!!');
                             });
+                            setTimeout(() => {
+                                Toast.hide()
+                            }, 1000)
                         }}
 
                     >
-                        <Home></Home>
+                        {pathname === "/home" ? <Home></Home> : null}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -107,14 +80,18 @@ export default class Navbar extends React.Component {
                         title="发现"
                         key="discover"
 
-                        selected={this.state.selectedTab === 'discover'}
+                        selected={pathname === "/discover"}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'discover',
+                            this.props.history.push("/discover")
+                            Toast.loading('Loading...', 1, () => {
+                                console.log('Load complete !!!');
                             });
+                            setTimeout(() => {
+                                Toast.hide()
+                            }, 1000)
                         }}
                     >
-                        <Answer></Answer>
+                        {pathname === "/discover" ? < Discovery></ Discovery> : null}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -136,31 +113,40 @@ export default class Navbar extends React.Component {
                         title="消息"
                         key="Message"
 
-                        selected={this.state.selectedTab === 'Message'}
+                        selected={pathname === "/message"}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'Message',
+                            this.props.history.push("/message")
+                            Toast.loading('Loading...', 1, () => {
+                                console.log('Load complete !!!');
                             });
+                            setTimeout(() => {
+                                Toast.hide()
+                            }, 1000)
                         }}
                     >
-                        <Messages></Messages>
+                        {pathname === "/message" ? < Messages></ Messages> : null}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={{ uri: `${my}` }}
                         selectedIcon={{ uri: `${myactive}` }}
                         title="我的"
                         key="Myinfo"
-                        selected={this.state.selectedTab === 'Myinfo'}
+                        selected={pathname === "/user"}
                         onPress={() => {
-                            this.setState({
-                                selectedTab: 'Myinfo',
+                            this.props.history.push("/user")
+                            Toast.loading('Loading...', 1, () => {
+                                console.log('Load complete !!!');
                             });
+                            setTimeout(() => {
+                                Toast.hide()
+                            }, 1000)
                         }}
                     >
-                        <Myinfo></Myinfo>
+                        {pathname === "/user" ? < Myinfo></ Myinfo> : null}
                     </TabBar.Item>
                 </TabBar>
-            </div>
+            </div >
+
         );
     }
 }

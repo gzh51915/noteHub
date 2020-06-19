@@ -7,11 +7,11 @@ export default class index extends Component {
             <WingBlank size="md">
                 <div className="answer-header">
                     <div className="header-left">
-                        <span class="iconfont icon-fanhui-copy-copy"></span>
+                        <span className="iconfont icon-fanhui-copy-copy"></span>
                     </div>
                     <div className="header-right">
-                        <span class="iconfont icon-sousuo"></span>
-                        <span class="iconfont icon-shenglvehao"></span>
+                        <span className="iconfont icon-sousuo"></span>
+                        <span className="iconfont icon-shenglvehao"></span>
                     </div>
                 </div>
                 <div className="answer-title">
@@ -38,7 +38,7 @@ export default class index extends Component {
                             </div>
                         </div>
                         <div className="answer-user-follow">
-                            <span class="iconfont icon-tianjia"></span>
+                            <span className="iconfont icon-tianjia"></span>
                             <span>关注</span>
                         </div>
                     </div>

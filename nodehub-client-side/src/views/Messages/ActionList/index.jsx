@@ -7,10 +7,10 @@ export default class index extends Component {
             <WingBlank>
                 < ul >
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -22,10 +22,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -37,10 +37,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -52,10 +52,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -67,10 +67,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -82,10 +82,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -97,10 +97,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -112,10 +112,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -127,10 +127,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">
@@ -142,10 +142,10 @@ export default class index extends Component {
                         </div>
                     </li>
                     <li className="action-item">
-                        <p className="item-header">
+                        <div className="item-header">
                             <img src={require("assets/images/question.png")}></img><span>问题新增<span>1</span>个回答<span style={{ marginLeft: "10px" }}>6/14</span></span>
                             <h1>有哪些真正写到你心里去了的句子？</h1>
-                        </p>
+                        </div>
 
                         <div className="item-answer">
                             <div className="item-user">

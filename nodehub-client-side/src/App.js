@@ -1,12 +1,15 @@
 import React from 'react';
 import Navbar from "./components/Navbar"
-import Search from "./components/Search"
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom"
 //应用根组件
 function App() {
   return (
     <div className="App" >
-      <Search></Search>
-      <Navbar></Navbar>
+      <Router>
+        <Switch>
+          <Route to="/" component={Navbar}></Route>
+        </Switch>
+      </Router>
     </div >
   );
 }
