@@ -6,13 +6,17 @@ const instance = axios.create({
     timeout:5000,
 })
 
-
+instance.defaults.headers['token'] =  getToken();
+// instance.defaults.headers.common["Content-Type"] =   'application/x-www-form-urlencoded' 
+// instance.defaults.headers.common["Access-Control-Allow-Headers"] =   'Authorization'
 
 instance.interceptors.request.use(
     function (config) {
+      // config.
     // 在发送请求之前做些什么
-    // config.headers["authorization"] = "Bearer " + getToken();
-    axios.defaults.headers.common["token"] =  getToken();
+    // config.headers["Content-Type"] = 'application/x-www-form-urlencoded'
+    // config.headers["token"] = getToken();
+    // axios.defaults.headers["token"] =  getToken();
     //console.log(config)
     return config;
   }, function (error) {
@@ -34,9 +38,6 @@ export function get(url,params){
         params
     })
 }
-
-
-
 export function post(url,data){
   return instance.post(url,data)
 }

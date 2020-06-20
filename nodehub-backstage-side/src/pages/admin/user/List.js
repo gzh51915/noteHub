@@ -1,88 +1,108 @@
-import React from 'react'
-import { Table } from 'antd';
+import React, { Component }  from 'react'
+import { Table ,Button,Popconfirm} from 'antd';
+import Edit from './Edit'
+import { Avatar } from 'antd';
+import { UserApi } from '../../../services/products'
+import { UserdelApi } from '../../../services/products'
+export default class List extends Component {
 
-const List = () => {
+  state=({
+      dataSource:[] 
+  })
 
+
+
+
+  async componentDidMount(){
+      const resule=await UserApi()
+      console.log(resule.data.data.list);
+      
+      const dataSource=resule.data.data.list
+
+    
+      
+      this.setState({
+          dataSource
+      })
+    }
+render() {  
 const columns = [
   {
-    title: 'Full Name',
+    title: '昵称',
     width: 100,
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'nickname',
+    key: 'nickname',
     fixed: 'left',
   },
   {
-    title: 'Age',
+    title: '用户ID',
     width: 100,
-    dataIndex: 'age',
-    key: 'age',
+    dataIndex: 'id',
+    key: 'id',
     fixed: 'left',
   },
   {
-    title: 'Column 1',
-    dataIndex: 'address',
+    title: '提问数',
+    dataIndex: 'questions',
     key: '1',
     width: 150,
   },
   {
-    title: 'Column 2',
-    dataIndex: 'address',
+    title: '回答数',
+    dataIndex: 'answer',
     key: '2',
     width: 150,
   },
   {
-    title: 'Column 3',
-    dataIndex: 'address',
-    key: '3',
+    title: '头像',
     width: 150,
+    render:(item)=>{
+      return (
+          <div>
+              <Avatar src={item.icon}/>
+          </div>
+      )
+    }
   },
   {
-    title: 'Column 4',
-    dataIndex: 'address',
-    key: '4',
-    width: 150,
-  },
-  {
-    title: 'Column 5',
-    dataIndex: 'address',
+    title: '用户名',
+    dataIndex: 'username',
     key: '5',
     width: 150,
   },
   {
-    title: 'Column 6',
-    dataIndex: 'address',
-    key: '6',
-    width: 150,
-  },
-  {
-    title: 'Column 7',
-    dataIndex: 'address',
-    key: '7',
-    width: 150,
-  },
-  { title: 'Column 8', dataIndex: 'address', key: '8' },
-  {
-    title: 'Action',
+    title: '用户状态',
     key: 'operation',
     fixed: 'right',
     width: 100,
-    render: () => <a>action</a>,
+    render: (record) => (
+      <span>
+    <Edit record={record}/>
+    <Popconfirm title="确认删除?" onCancel={()=>console.log('取消')}  
+                        onConfirm={()=>{ 
+                            UserdelApi(record.id).then(
+                             res=>{
+                                  console.log(res,'============',record.id);                     
+                              })
+                            }}>
+                        <Button style={{margin:"1rem 0rem"}} type="danger" size="small">删除</Button>
+                        </Popconfirm>
+    </span>
+    ),
   },
 ];
 
-const data = [];
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i,
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`,
-  });
+const {dataSource} =this.state
+  // for (let i = 0; i < 20; i++) {
+  //   data.push({
+  //     key: i,
+  //     name: `Edrward ${i}`,
+  //     age: 32,
+  //     address: `London Park no. ${i}`,
+  //   });
+  // }
+      return(
+        <Table columns={columns} dataSource={dataSource} scroll={{ x: 1500, y: 600 }} />
+      )
+    }
 }
-
-return(
-  <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
-)
-}
-
-export default List

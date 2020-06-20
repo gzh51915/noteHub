@@ -26,7 +26,6 @@ const layout = {
       console.log('Success:', values);
       // setToken(values.username);
       // props.history.push("/admin");
-      console.log(123);
       
       loginApi({
         username: values.username,

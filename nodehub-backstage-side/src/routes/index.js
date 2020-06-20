@@ -7,7 +7,7 @@ import esList from "../pages/admin/essay/esList";
 import esEdit from "../pages/admin/essay/esEdit";
 import Consumer from "../pages/admin/user/List";
 import PageNotFound from "../pages/PageNotFound";
-import { AreaChartOutlined,DatabaseFilled,ContainerTwoTone,SmileOutlined} from '@ant-design/icons';
+import { AreaChartOutlined,DatabaseFilled,AuditOutlined,SmileOutlined} from '@ant-design/icons';
 
 export const mainRoutes = [{
     path:'/login',
@@ -41,7 +41,7 @@ export const adminRoutes = [{
     isShow:true,
     exact:true,
     title:'分类文章管理',
-    icon:<ContainerTwoTone />
+    icon:<AuditOutlined />
 },{
     path:'/admin/essay/edit/:id?',
     component:esEdit,
