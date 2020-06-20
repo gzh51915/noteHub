@@ -49,9 +49,11 @@ class Avatar extends React.Component {
         const {imageUrl} = this.state
         if (!imageUrl) return message.error('请选择图片');
         // console.log(imageUrl)
-        const res = await axios.post('http://127.0.0.1:4444/api/admin/ceshi', {
-            data:imageUrl
-        })
+        console.log(imageUrl)
+        // const res = await axios.post('http://127.0.0.1:4444/api/admin/ceshi', {
+        //     data:imageUrl
+        // })
+
     }
     render() {
         const uploadButton = (

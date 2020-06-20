@@ -40,7 +40,6 @@ const {
 	imgWsFn
 } = require('../common/fsFn.js')
 
-
 // 用户注册
 Router.post('/register', async (req, res) => {
 	try {
@@ -101,8 +100,7 @@ Router.get('/smsCode', async (req, res) => {
 			data: null
 		})
 		// 生成短信验证码
-		// const smsCode = await getSms(phonenumber)
-		const smsCode = 1234
+		const smsCode = await getSms(phonenumber)
 		// 设置cookie
 		res.cookie('smsCode', smsCode, {
 			maxAge: 1000 * 60 * 5,
@@ -189,7 +187,6 @@ Router.get('/getSubareaData', async (req, res) => {
 		console.log(error)
 	}
 })
-
 // 获取问题
 Router.get('/getQuestions', async (req, res) => {
 	try {
@@ -357,7 +354,6 @@ Router.get('/admin/removeSubarea', verifyToken, async (req, res) => {
 			data: null
 		})
 
-
 	} catch (error) {
 		console.log(error)
 	}
@@ -371,10 +367,48 @@ Router.post('/admin/updateSubarea', verifyToken, async (req, res) => {
 			suffix,
 			title
 		} = req.body
-		res.send({
+		let result = await findOneFn(subareaModel, {
+			id
+		})
+		if (!result) res.send({
+			status: 400,
+			msg: '未检测到相应分区',
+			data: null
+		})
+		if (!imgUrl && !title && !suffix) res.send({
+			status: 400,
+			msg: '未检测到需要修改的值',
+			data: null
+		})
+		const newTitle = title || result.title
+		let newImg = result.img
+		if (imgUrl.length !== 0 && suffix.length !== 0) {
+			// 图片名
+			const imgName = "/" + Date.now() + suffix
+			// 存储路径
+			const newPath = path.join(__dirname, '../static/subareaImages' + imgName).replace(/\\/g, '/')
+			let result = await imgWsFn(imgUrl, newPath)
+			if (!result) return res.send({
+				status: 400,
+				data: null,
+				msg: '图片转存失败'
+			})
+			newImg = imgName
+		}
+		result = await updateOneFn(subareaModel, id, {
+			title: newTitle,
+			img: newImg
+		})
+		// console.log(result)
+		if (result.n === 0) return res.send({
 			status: 400,
 			data: null,
-			msg: '测试中'
+			msg: '修改失败'
+		})
+		res.send({
+			status: 200,
+			data: null,
+			msg: '修改成功'
 		})
 	} catch (e) {
 		//TODO handle the exception
@@ -389,27 +423,37 @@ Router.post('/admin/addSubarea', verifyToken, async (req, res) => {
 			imgUrl,
 			suffix
 		} = req.body
-		res.send({
+		if (!title || !imgUrl || !suffix) return res.send({
+			status: 400,
+			msg: '信息不完整',
+			data: null
+		})
+		const id = Date.now()
+		// 图片名
+		const imgName = "/" + Date.now() + '.' + suffix
+		// 存储路径
+		const newPath = path.join(__dirname, '../static/subareaImages' + imgName).replace(/\\/g, '/')
+		let result = await imgWsFn(imgUrl, newPath)
+		if (!result) return res.send({
 			status: 400,
 			data: null,
-			msg: '测试中'
+			msg: '图片转存失败'
 		})
-	} catch (e) {
-		//TODO handle the exception
-		console.log(e)
-	}
-})
-
-// 图片测试
-Router.post('/admin/ceshi', async (req, res) => {
-	try {
-		const {
-			data,
-			imgname,
-			suffix
-		} = req.body
-		// const imgpath = path.join(__dirname,`../static/subareaImages/${Date.now()}.${suffix}`)
-		// console.log(imgname,suffix)
+		result = await subareaModel.create({
+			id,
+			title,
+			img: imgName
+		})
+		if (!result) return res.send({
+			status: 400,
+			data: null,
+			msg: '添加失败'
+		})
+		res.send({
+			status: 200,
+			data: null,
+			msg: '添加成功'
+		})
 	} catch (e) {
 		//TODO handle the exception
 		console.log(e)
@@ -420,9 +464,7 @@ Router.post('/admin/ceshi', async (req, res) => {
 // 身份验证中间件 
 async function verifyToken(req, res, next) {
 	try {
-		// console.log()
 		const result = isTokenLate(req.headers.token)
-		// console.log(result)
 		if (!result) return res.send({
 			status: 400,
 			msg: '身份不合法',
@@ -433,8 +475,6 @@ async function verifyToken(req, res, next) {
 		console.log(error)
 	}
 }
-
-
 
 
 module.exports = Router

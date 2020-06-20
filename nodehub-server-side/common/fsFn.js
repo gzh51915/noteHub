@@ -25,9 +25,9 @@ function logWsFn(user, target = '', content = '') {
 }
 
 // 图片写入模块
-function imgWsFn(base64, path, name) {
+function imgWsFn(base64, path) {
 	return new Promise((resolve, reject) => {
-		base64 = data.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
+		base64 = base64.replace(/^data:image\/\w+;base64,/, ""); //去掉图片base64码前面部分data:image/png;base64
 		const dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
 		// console.log('dataBuffer是否是Buffer对象：' + Buffer.isBuffer(dataBuffer));
 		fs.writeFile(path, dataBuffer, function(err) { //用fs写入文件

@@ -1,173 +1,192 @@
 const mongoose = require('mongoose')
 //1 连接数据库
-mongoose.connect('mongodb://127.0.0.1:27017/noteHub',
-    { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/noteHub', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
 //2 监听数据库状态
 let db = mongoose.connection
 //3 监听端口
 db.on('open', () => {
-    console.log('======= mongodb://127.0.0.1:27017/zsgDB successfu lconnection =======');
+	console.log('======= mongodb://127.0.0.1:27017/zsgDB successfu lconnection =======');
 })
 const Schema = mongoose.Schema
 // =================================Schema=================================
 // 管理员模式对象
 const adminSchema = new Schema({
-    id: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    username: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    password: {
-        type: String,
-        required: true,
-        trim: true
-    }
+	id: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	username: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	password: {
+		type: String,
+		required: true,
+		trim: true
+	}
 })
 // 用户模式对象
 const userSchema = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true,
-		  trim: true
-    },
-    nickname: {
-        type: String,
-        trim: true,
-        default: Date.now() + 'note' + parseInt(Math.random() * 100000)
-    },
-    password: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    // 头像地址
-    icon: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    // 问题数量
-    questions: {
-        type: Number,
-        default: 0
-    },
-    // 回答数量
-    answer: {
-        type: Number,
-        default: 0
-    }
+	id: {
+		type: String,
+		required: true
+	},
+	username: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	nickname: {
+		type: String,
+		trim: true,
+		default: Date.now() + 'note' + parseInt(Math.random() * 100000)
+	},
+	password: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	// 头像地址
+	icon: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	// 问题数量
+	questions: {
+		type: Number,
+		default: 0
+	},
+	// 回答数量
+	answer: {
+		type: Number,
+		default: 0
+	}
 })
 // 发现-分区模型对象
 const subareaSchma = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
-    title: {
-        type: String,
-        required: true
-    },
-    img: {
-        type: String,
-        required: true
-    },
-    targetUrl: {
-        type: String
-    }
+	id: {
+		type: String,
+		required: true
+	},
+	title: {
+		type: String,
+		required: true
+	},
+	img: {
+		type: String,
+		required: true
+	},
+	targetUrl: {
+		type: String
+	}
 })
 // 问题模型对象
 const questionSchma = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
-    title: {
-        type: String,
-        required: true
-    },
-    img: {
-        type: String,
-        default: null
-    },
-    content: {
-        type: String,
-        default:null
-    },
-    hot: {
-        type: Number,
-        default: 0
-    },
-    questioner: {
-        type: String,
-        default: '匿名'
-    },
-    // 发表时间
-    time: {
-        type: Date,
-        default: Date.now
-    },
-    // 是否推上热榜
-    HotList: {
-        type: Boolean,
-        default: false
-    },
-    // 是否主动推荐给用户
-    recommend: {
-        type: Boolean,
-        default: false
-    },
-    // 问题类型
-    classify: {
-        type: Boolean,
-        default: null
-    }
+	id: {
+		type: String,
+		required: true
+	},
+	title: {
+		type: String,
+		required: true
+	},
+	img: {
+		type: String,
+		default: null
+	},
+	content: {
+		type: String,
+		default: null
+	},
+	hot: {
+		type: Number,
+		default: 0
+	},
+	questioner: {
+		type: String,
+		default: '匿名'
+	},
+	// 发表时间
+	time: {
+		type: Date,
+		default: Date.now
+	},
+	// 是否推上热榜
+	HotList: {
+		type: Boolean,
+		default: false
+	},
+	// 是否主动推荐给用户
+	recommend: {
+		type: Boolean,
+		default: false
+	},
+	// 问题类型
+	classify: {
+		type: Boolean,
+		default: null
+	}
 })
 // 回答模型对象
 const answerSchma = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
-    pid: {
-        type: String,
-        required: true
-    },
-    answer: {
-        type: String,
-        required: true
-    },
-    questioner: {
-        type: String,
-        required: true
-    },
-    answerer: {
-        type: String,
-        default: '匿名'
-    },
-    time: {
-        type: Date,
-        default: Date.now
-    },
-    agree: {
-        type: Number,
-        default:0
-    },
-    comment: {
-        type: Number,
-        default:0
-    }
+	id: {
+		type: String,
+		required: true
+	},
+	pid: {
+		type: String,
+		required: true
+	},
+	answer: {
+		type: String,
+		required: true
+	},
+	questioner: {
+		type: String,
+		required: true
+	},
+	answerer: {
+		type: String,
+		default: '匿名'
+	},
+	time: {
+		type: Date,
+		default: Date.now
+	},
+	agree: {
+		type: Number,
+		default: 0
+	},
+	comment: {
+		type: Number,
+		default: 0
+	}
 
 })
+// 轮播图模型对象
+const bannerSchma = new Schema({
+	id: {
+		type: String,
+		required: true
+	},
+	img: {
+		type: String,
+		required: true
+	},
+	description: {
+		type: String
+	},
+	targetLink: {
+		type: String
+	}
 
+})
 // ======================模型======================
 // 管理员集合对象
 const adminModel = mongoose.model('admin', adminSchema)
@@ -179,12 +198,14 @@ const subareaModel = mongoose.model('subarea', subareaSchma)
 const questionModel = mongoose.model('questions', questionSchma)
 // 回答集合对象
 const answerModel = mongoose.model('answers', answerSchma)
+// 轮播图集合对象
+const bannerModel = mongoose.model('banners', bannerSchma)
 module.exports = {
-    adminModel,
-    userModel,
-    subareaModel,
-    questionModel,
-    answerModel
+	adminModel,
+	userModel,
+	subareaModel,
+	questionModel,
+	answerModel
 }
 
 
@@ -201,16 +222,16 @@ module.exports = {
 //     ind = ind === 7 ? 1 : ind
 //     let icon = `p${ind}.jpg`
 //     ind++
-    // userModel.create({
-    //     id,
-    //     username,
-    //     password,
-    //     icon,
-    // }).then((data)=>{
-    //     console.log('插入成功：',data); 
-    // }).catch((err)=>{
-    //     console.log('插入失败：',err);
-    // })
+// userModel.create({
+//     id,
+//     username,
+//     password,
+//     icon,
+// }).then((data)=>{
+//     console.log('插入成功：',data); 
+// }).catch((err)=>{
+//     console.log('插入失败：',err);
+// })
 // }
 
 
@@ -230,4 +251,3 @@ module.exports = {
 //         console.log('插入失败：',err);
 //     })
 // }
-

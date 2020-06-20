@@ -16,7 +16,7 @@ const {
 // 跨域处理==================================================
 app.all("*", function(req, res, next) {
 	//设置允许跨域的域名  
-	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Origin", req.get('origin'));
 	//允许的header类型
 	res.header("Access-Control-Allow-Headers", "content-type,token,x-requested-with");
 	// 允许凭证访问控制
