@@ -1,20 +1,27 @@
+@charset "UTF-8";
 @function r($px) {
     @return ($px/750) * 100vw;
+  }
+  *{
+      padding: 0;
+      margin: 0;
   }
   ul,li{
       list-style: none;
   }
-  *{
-      margin: 0;
-      padding: 0;
-  }
-
-.question-list{
-width: 100%;
-padding: 0 r(20);
-
-.list-item{
-    border-bottom: r(10) solid #E6E6E6;
+  .recommend{
+      width: 100%;
+      padding: 0 r(10);
+       .title{
+           height: r(60);
+           line-height: r(60);
+           font-size: r(40);
+          
+           padding-bottom: r(20);
+           border-bottom: 1px solid black;
+       }
+  .list-item{
+    border-bottom: r(10) solid black;
     margin-bottom: r(20);
     h1{
         font-size: r(30);
@@ -23,11 +30,16 @@ padding: 0 r(20);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        border-bottom:1px solid  	#F5F5F5  ;
+    span{
+        font-size: r(35);
+        font-weight: 600;
+        color:  	#FF8C00;
     }
-    
+    }  
     .item-header{
-        height:r(40);
+        border-top: r(10) solid  	#DCDCDC;
+        padding-top: r(20);
+        height:r(80);
         width: 100%;
         display: flex;
         justify-content: start;
@@ -41,7 +53,7 @@ padding: 0 r(20);
             margin-right: r(10);
         }
         span{
-            font-size: r(20);
+            font-size: r(25);
             line-height:r(25) ;
         }
     }
@@ -55,31 +67,17 @@ padding: 0 r(20);
           -webkit-line-clamp:3;
           -webkit-box-orient:vertical;
           width: 100%;
-          font-size: r(25);
-        
+          font-size: r(30);
+           margin-bottom: r(20);
+           span{
+               font-size: r(35);
+               color:  	#3CB371;
+               font-weight: 600;
+           }
          
       }   
-      .bottom{
-          margin-top: r(20);
-             .approve{
-        font-size: 12px;
-            .icon-zan2{
-                vertical-align:top;
-                display: inline-block;
-            }
-            
-        }
-        .comment{
-            font-size: 12px; 
-            .icon-pinglun{
-                vertical-align:bottom;
-                display: inline-block;
-            }
-        }
-      }
-   
     }
-}
 
+  }
 
 }

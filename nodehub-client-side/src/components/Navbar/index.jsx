@@ -1,4 +1,4 @@
-import { TabBar, Toast } from 'antd-mobile';
+import { TabBar } from 'antd-mobile';
 import React from "react"
 import home from "assets/images/home.png"
 import homeactive from "assets/images/home-active.png"
@@ -8,10 +8,13 @@ import my from "assets/images/myinfo.png"
 import myactive from "assets/images/myinfo-active.png"
 import dis from "assets/images/discover.png"
 import disactive from "assets/images/discover-active.png"
-import Home from "../../views/Home"
-import Myinfo from "../../views/Myinfo"
-import Messages from "../../views/Messages"
-import Discovery from "../../views/Discovery"
+import Home from "views/Home"
+import Myinfo from "views/Myinfo"
+import Messages from "views/Messages"
+import Discovery from "views/Discovery"
+import Answer from "views/Answer"
+
+import { Route, Switch } from "react-router-dom"
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
@@ -22,13 +25,15 @@ export default class Navbar extends React.Component {
     render() {
         const pathname = this.props.location.pathname
         return (
-            <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
+            <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }} >
                 <TabBar
                     unselectedTintColor="#949494"
                     tintColor="#33A3F4"
                     barTintColor="white"
+
                 >
                     <TabBar.Item
+                        ref="sroll"
                         title="首页"
                         key="Home"
                         icon={<div style={{
@@ -49,16 +54,15 @@ export default class Navbar extends React.Component {
 
                         onPress={() => {
                             this.props.history.push("/home")
-                            Toast.loading('Loading...', 1, () => {
-                                console.log('Load complete !!!');
-                            });
-                            setTimeout(() => {
-                                Toast.hide()
-                            }, 1000)
-                        }}
 
+                        }}
                     >
-                        {pathname === "/home" ? <Home></Home> : null}
+                        <Switch>
+                            <Route exact path="/home" component={Home}  ></Route>
+                            <Route path="/home/questionsdetail/:id" component={Answer}></Route>
+                            <Route path="/home/addAnswer/:id" ></Route>
+                        </Switch>
+
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -83,15 +87,10 @@ export default class Navbar extends React.Component {
                         selected={pathname === "/discover"}
                         onPress={() => {
                             this.props.history.push("/discover")
-                            Toast.loading('Loading...', 1, () => {
-                                console.log('Load complete !!!');
-                            });
-                            setTimeout(() => {
-                                Toast.hide()
-                            }, 1000)
+
                         }}
                     >
-                        {pathname === "/discover" ? < Discovery></ Discovery> : null}
+                        <Route exact path="/discover" component={Discovery}  ></Route>
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -116,15 +115,10 @@ export default class Navbar extends React.Component {
                         selected={pathname === "/message"}
                         onPress={() => {
                             this.props.history.push("/message")
-                            Toast.loading('Loading...', 1, () => {
-                                console.log('Load complete !!!');
-                            });
-                            setTimeout(() => {
-                                Toast.hide()
-                            }, 1000)
+
                         }}
                     >
-                        {pathname === "/message" ? < Messages></ Messages> : null}
+                        <Route exact path="/message" component={Messages}></Route>
                     </TabBar.Item>
                     <TabBar.Item
                         icon={{ uri: `${my}` }}
@@ -134,15 +128,10 @@ export default class Navbar extends React.Component {
                         selected={pathname === "/user"}
                         onPress={() => {
                             this.props.history.push("/user")
-                            Toast.loading('Loading...', 1, () => {
-                                console.log('Load complete !!!');
-                            });
-                            setTimeout(() => {
-                                Toast.hide()
-                            }, 1000)
+
                         }}
                     >
-                        {pathname === "/user" ? < Myinfo></ Myinfo> : null}
+                        <Route exact path="/user" component={Myinfo}></Route>
                     </TabBar.Item>
                 </TabBar>
             </div >

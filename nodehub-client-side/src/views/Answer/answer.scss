@@ -9,10 +9,9 @@
   ul,li{
       list-style: none;
   }
-
   //页面开头
   .answer-header{
-     
+     padding-top: r(10);
      position: relative;
      height: r(40);
      //左边部分
@@ -80,6 +79,9 @@
       }
     }
   .answer-content{
+      width: 100%;
+      padding: r(20) 0;
+      border: r(10) solid #F5DEB3;
       //回答用户
       .answer-user{
           height: r(100);
@@ -139,10 +141,19 @@
       }
       //回答内容
       .answer-text{
-          font-size: r(30);
+          font-size: r(28);
+          text-indent: r(10);
+         line-height: r(50);
           padding-top: r(10);
           padding-bottom: r(20);
           text-indent: r(40);
+          img{
+              width: 100%;
+              display: block;
+              margin: auto;
+              height: r(320);
+          }
       }
   }
+
  
