@@ -30,3 +30,10 @@ export function ChartstwoAPI(){
 export function ChartsthreeAPI(){
     return get("/admin/goodAnswerTop20");
 }
+
+export function questionApi(page=1){
+    return get("/getQuestions",{page});
+}
+export function delquestionApi(id,data){
+    return get(`/admin/removeQuestions?id=${id}`);
+}

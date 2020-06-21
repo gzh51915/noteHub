@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import {withRouter} from 'react-router-dom'
 import { Form, Input, Button, Card, message } from 'antd';
 import { createApi } from '../../../services/products';
 import Avatar from './upload'
-
+import {Link} from 'react-router-dom'
 
 const onFinishFailed = errorInfo => {
     message.error("请输入正确的内容")
@@ -11,7 +12,7 @@ const onFinishFailed = errorInfo => {
 
 
 
-const Edit = () => {
+const Edit = (props) => {
     const [img,setimgUrl] =useState('')
     const [suffi,setsuffix] =useState('')
 
@@ -20,7 +21,6 @@ const Edit = () => {
     // console.log(value);
     // const cur = new ref.current()
     // console.log(cur);
-    
     var onFinish = values => {
         // console.log('Success:', values);
         const { title } = values
@@ -28,7 +28,16 @@ const Edit = () => {
         
         createApi(title, img, suffi).then(res => {
             //  console.log(imgUrl, suffix);
-            console.log(res);
+            // // getList() 
+           const data = res.data
+            console.log(data)
+            if(data.status !== 200) return message.error(data.msg,2)
+             message.success(data.msg,2)
+            //  window.location.href = 'http://localhost:3000/#/admin/products'
+            // console.log(props)
+            props.history.push({
+                pathname:'/admin/products'
+            })
         })
     };
     var getImg = (data, suffix) => {
@@ -65,4 +74,4 @@ const Edit = () => {
     )
 }
 
-export default Edit
+export default withRouter(Edit)
