@@ -1,3 +1,4 @@
+// 分区详情
 import React, { Component } from 'react'
 import { NavBar, Icon, Tabs } from 'antd-mobile'
 import { withRouter } from 'react-router-dom'
