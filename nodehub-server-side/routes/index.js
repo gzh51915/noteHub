@@ -6,7 +6,8 @@ const getSms = require('../common/smsFn.js')
 const {
 	API_ICON_PATH,
 	API_SUBAREA_PATH,
-	API_QUESTION_PATH
+	API_QUESTION_PATH,
+	API_BANNERS_PATH
 } = require('../common/public')
 // 引入token模块
 const {
@@ -19,7 +20,8 @@ const {
 	subareaModel,
 	adminModel,
 	questionModel,
-	answerModel
+	answerModel,
+	bannerModel
 } = require('../db/index')
 const {
 	findOneFn,
@@ -27,7 +29,8 @@ const {
 	findCountFn,
 	conditionQueryFn,
 	deleteOneFn,
-	updateOneFn
+	updateOneFn,
+	sortFindFn
 } = require('../db/dbFn.js')
 // md5加密模块
 const md5 = require('blueimp-md5')
@@ -165,7 +168,6 @@ Router.post('/login', async (req, res) => {
 // 获取分区数据
 Router.get('/getSubareaData', async (req, res) => {
 	try {
-		// console.log('getSubareaData=========请求进入')
 		const {
 			page,
 			pagesize
@@ -211,7 +213,8 @@ Router.get('/getQuestions', async (req, res) => {
 		console.log(error)
 	}
 })
-// 获取问题详情
+
+// 获取问题-回答详情
 Router.get('/getQuestionsDetail/:id', async (req, res) => {
 	try {
 		const {
@@ -238,6 +241,119 @@ Router.get('/getQuestionsDetail/:id', async (req, res) => {
 				answer: answerResult
 			},
 			msg: '获取成功！'
+		})
+	} catch (error) {
+		console.log(error)
+	}
+})
+// 发布问题
+Router.post('/addQuestion', async (req, res) => {
+	try {
+		const rData = req.body
+		const title = rData.title
+		if (!title || !title.trim().length === 0) return res.send({
+			status: 400,
+			data: null,
+			msg: '发布问题失败，缺乏必要条件'
+		})
+		// 判断当前问题是否存在
+		let result = await findOneFn(questionModel, { title })
+		if (result) return res.send({
+			status: 400,
+			data: null,
+			msg: '发布问题失败，问题已存在'
+		})
+		let questioner = '匿名'
+		if (rData.questioner && rData.questioner.trim().length !== 0) questioner = rData.questioner
+
+		// 如果非匿名，判断用户是否存在
+		if (questioner !== '匿名') {
+			result = await findOneFn(userModel, { id: questioner })
+			if (!result) return res.send({
+				status: 400,
+				data: null,
+				msg: '发布失败，用户不存在'
+			})
+		}
+		const content = rData.content || ''
+		const id = Date.now()
+		// 将问题添加入数据库
+		await questionModel.create({ title, content, id, questioner })
+		res.send({
+			status: 200,
+			data: {
+				id, content, questioner, title
+			},
+			msg: '发布问题成功'
+		})
+	} catch (error) {
+		console.log(error)
+	}
+})
+// 发布回答接口
+Router.post('/addAnswer', async (req, res) => {
+	try {
+		const aData = req.body
+		const pid = aData.pid
+		const answer = aData.answer
+		// 判断必要条件 回答内容 和 问题Id是否为空
+		if (!pid || !answer) return res.send({
+			status: 400,
+			msg: '缺乏必要条件',
+			data: null
+		})
+		let result = await findOneFn(questionModel, { id: pid })
+		// 判断问题id是否正确
+		if (!result) res.send({
+			status: 200,
+			data: null,
+			msg: '未检测到当前问题！'
+		})
+		const answerer = aData.answerer || '匿名'
+		// 判断非匿名用户是否存在
+		if (answerer !== '匿名') {
+			result = await findOneFn(userModel, { id: answerer })
+			if (!result) return res.send({
+				status: 200,
+				data: null,
+				msg: '未检测到用户Id！'
+			})
+		}
+		const id = Date.now()
+		// 所有条件通过，插入数据库
+		result = await answerModel.create({
+			pid, answer, answerer, id, questioner: pid
+		})
+
+		res.send({
+			status: 200,
+			msg: '发布成功',
+			data: {
+				result
+			}
+		})
+	} catch (error) {
+		console.log(error)
+	}
+})
+// 获取轮播图
+Router.get('/getBanners', async (req, res) => {
+	try {
+		const result = await findAllFn(bannerModel)
+		if (!result) return res.send({
+			status: 400,
+			dta: null,
+			msg: "轮播图数据获取失败"
+		})
+		result.forEach(element => {
+			element.img = `${API_BANNERS_PATH}${element.img}`
+		});
+		res.send({
+			status: 200,
+			data: {
+				result
+			},
+			msg: "轮播图数据获取成功"
 		})
 	} catch (error) {
 		console.log(error)
@@ -297,6 +413,30 @@ Router.get('/admin/getAllUsers', verifyToken, async (req, res) => {
 		console.log(error)
 	}
 })
+// 删除回答
+Router.get('/admin/removeQuestions', async (req, res) => {
+	try {
+		const { id } = req.query
+		if (!id) return res.send({
+			status: 400,
+			msg: '参数不合法',
+			data: null
+		})
+		const { n } = await deleteOneFn(questionModel, { id })
+		if (n === 0) return res.send({
+			status: 400,
+			msg: '删除失败',
+			data: null
+		})
+		res.send({
+			status: 200,
+			msg: '删除成功'+n,
+			data: null
+		})
+	} catch (error) {
+		console.log(error)
+	}
+})
 // 删除用户
 Router.get('/admin/removeUser', verifyToken, async (req, res) => {
 	try {
@@ -333,6 +473,7 @@ Router.get('/admin/removeSubarea', verifyToken, async (req, res) => {
 		const {
 			id
 		} = req.query
+		// console.log('进来了')
 		if (!id) return res.send({
 			status: 400,
 			msg: '参数错误',
@@ -343,12 +484,13 @@ Router.get('/admin/removeSubarea', verifyToken, async (req, res) => {
 		} = await deleteOneFn(subareaModel, {
 			id
 		})
+		console.log(n)
 		if (n === 0) return res.send({
 			status: 400,
 			msg: '删除失败',
 			data: null
 		})
-		else res.send({
+		res.send({
 			status: 200,
 			msg: '删除成功',
 			data: null
@@ -428,12 +570,20 @@ Router.post('/admin/addSubarea', verifyToken, async (req, res) => {
 			msg: '信息不完整',
 			data: null
 		})
+		// 判断分区是否存在
+		let result = await findOneFn(subareaModel, { title })
+		if (result) return res.send({
+			status: 400,
+			data: null,
+			msg: '当前分区已存在'
+		})
+		// 分区不存在，新增分区
 		const id = Date.now()
 		// 图片名
 		const imgName = "/" + Date.now() + '.' + suffix
 		// 存储路径
 		const newPath = path.join(__dirname, '../static/subareaImages' + imgName).replace(/\\/g, '/')
-		let result = await imgWsFn(imgUrl, newPath)
+		result = await imgWsFn(imgUrl, newPath)
 		if (!result) return res.send({
 			status: 400,
 			data: null,
@@ -457,6 +607,74 @@ Router.post('/admin/addSubarea', verifyToken, async (req, res) => {
 	} catch (e) {
 		//TODO handle the exception
 		console.log(e)
+	}
+})
+// 图表-用户回答数量Top20
+Router.get('/admin/userAnswerTop20', verifyToken, async (req, res) => {
+	try {
+		const result = await sortFindFn(userModel, { answer: -1 })
+		res.send({
+			status: 200,
+			msg: '用户回答数量获取成功',
+			data: {
+				result
+			}
+		})
+		// console.log(result)
+	} catch (error) {
+		console.log(error)
+	}
+})
+// 图表-分区点击量top20
+Router.get('/admin/subareaImagesTop20', verifyToken, async (req, res) => {
+	try {
+		const result = await sortFindFn(subareaModel, { 'pv': -1 }, 10)
+		res.send({
+			status: 200,
+			msg: '分区点击量获取成功',
+			data: {
+				result
+			}
+		})
+	} catch (error) {
+		console.log(error)
+	}
+})
+// 图表-高赞回答top20
+Router.get('/admin/goodAnswerTop20', verifyToken, async (req, res) => {
+	try {
+		let result = await sortFindFn(answerModel, { 'agree': -1 })
+		if (!result) return res.send({
+			status: 400,
+			msg: '数据错误！',
+			data: null
+		})
+		// 问题id数组
+		let qid = ''
+		let newArr = []
+		for (const key in result)
+			if (result.hasOwnProperty(key)) {
+				qid = result[key].pid
+				const qData = await findOneFn(questionModel, { id: qid })
+				newArr.push({
+					questionTitle: qData.title,
+					questionId: result[key].pid,
+					answerContent: result[key].answer,
+					answerId: result[key].id,
+					agree: result[key].agree,
+					answerer: result[key].answerer
+				})
+			}
+		res.send({
+			status: 200,
+			data: {
+				result: newArr
+			},
+			msg: '数据获取成功'
+		})
+		// console.log(newArr)
+	} catch (error) {
+		console.log(error)
 	}
 })
 

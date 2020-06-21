@@ -42,7 +42,15 @@ function conditionQueryFn(model, params = {}) {
 		})
 	})
 }
-
+// 排序查找
+function sortFindFn(model, rule = {'_id':-1},number=10) {
+	return new Promise((resolve, reject) => {
+		model.find({}).sort(rule).limit(number).exec(function (err, doc) {
+			if (err) reject(err)
+			else resolve(doc)
+		})
+	})
+}
 // 删除一个
 function deleteOneFn(model, id) {
 	return new Promise((resolve, reject) => {
@@ -63,7 +71,7 @@ function findCountFn(model) {
 	})
 }
 
-// 更新数据
+// 更新
 function updateOneFn(model, id, obj) {
 	return new Promise((resolve, reject) => {
 		model.updateOne({
@@ -85,5 +93,6 @@ module.exports = {
 	findCountFn,
 	conditionQueryFn,
 	deleteOneFn,
-	updateOneFn
+	updateOneFn,
+	sortFindFn
 }

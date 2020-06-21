@@ -13,6 +13,9 @@ Router.get('/subareaImages/:p', (req, res) => {
 Router.get('/questionImages/:p', (req, res) => {
     res.sendFile(path.join(__dirname, `../static/questionImages/${req.params.p}`))
 })
+Router.get('/banners/:p', (req, res) => {
+    res.sendFile(path.join(__dirname, `../static/banners/${req.params.p}`))
+})
 
 
 module.exports = Router

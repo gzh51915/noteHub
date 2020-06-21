@@ -84,6 +84,10 @@ const subareaSchma = new Schema({
 	},
 	targetUrl: {
 		type: String
+	},
+	pv: {
+		type: Number,
+		default: 0
 	}
 })
 // 问题模型对象
@@ -205,8 +209,70 @@ module.exports = {
 	userModel,
 	subareaModel,
 	questionModel,
-	answerModel
+	answerModel,
+	bannerModel
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
