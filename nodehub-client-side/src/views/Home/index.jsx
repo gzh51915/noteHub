@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import Header from "components/Header"
 export default class Home extends Component {
     componentDidMount() {

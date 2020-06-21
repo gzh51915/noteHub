@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "./answer.scss"
-import { WingBlank, Toast } from "antd-mobile"
+import { WingBlank } from "antd-mobile"
 import axios from "../../utils/axios"
 import { withRouter } from "react-router-dom"
 import Notfound from "components/NotFound"

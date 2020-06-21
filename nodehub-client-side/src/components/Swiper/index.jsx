@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
 import { Carousel } from 'antd-mobile';
-import swiper1 from "assets/images/swiper1.png"
-import swiper2 from "assets/images/swiper2.png"
-import swiper3 from "assets/images/swiper3.png"
-import swiper4 from "assets/images/swiper4.png"
 import "./swiper.scss"
 import axios from "../../utils/axios"
 export default class index extends Component {

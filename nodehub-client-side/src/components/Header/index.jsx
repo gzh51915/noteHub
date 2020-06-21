@@ -26,7 +26,7 @@ export default class Header extends Component {
 
     render() {
         const { tabList, title } = this.state;
-        if (title.length == 3) {
+        if (title.length === 3) {
             return (
                 <div >
                     <Tabs
@@ -47,7 +47,7 @@ export default class Header extends Component {
                 </div >
             )
         }
-        else if (title.length == 2) {
+        else if (title.length === 2) {
             return (
                 <div >
                     <Tabs

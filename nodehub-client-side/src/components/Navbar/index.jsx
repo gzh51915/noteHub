@@ -17,7 +17,7 @@ import Answer from "views/Answer"
 import { Route, Switch } from "react-router-dom"
 export default class Navbar extends React.Component {
     constructor(props) {
-        super(props);
+        super()
     }
     componentDidMount() {
         this.props.history.push("/home")
