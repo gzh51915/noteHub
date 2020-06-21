@@ -1,5 +1,5 @@
 import React, { Component }  from 'react'
-import { Table ,Button,Popconfirm} from 'antd';
+import { Table ,Button,Popconfirm,message} from 'antd';
 import Edit from './Edit'
 import { Avatar } from 'antd';
 import { UserApi } from '../../../services/products'
@@ -11,19 +11,19 @@ export default class List extends Component {
   })
 
 
-
-
-  async componentDidMount(){
-      const resule=await UserApi()
-      console.log(resule.data.data.list);
-      
-      const dataSource=resule.data.data.list
-
+  getUser=async()=>{
+    const resule=await UserApi()
+    console.log(resule.data.data.list);
+    const dataSource=resule.data.data.list
     
-      
-      this.setState({
-          dataSource
-      })
+    this.setState({
+        dataSource
+    })
+  }
+
+
+   componentDidMount(){
+      this.getUser()
     }
 render() {  
 const columns = [
@@ -80,10 +80,15 @@ const columns = [
     <Edit record={record}/>
     <Popconfirm title="确认删除?" onCancel={()=>console.log('取消')}  
                         onConfirm={()=>{ 
-                            UserdelApi(record.id).then(
-                             res=>{
-                                  console.log(res,'============',record.id);                     
-                              })
+                            UserdelApi(record.id).then(res => {
+                              console.log(res.data.status);
+                              
+                              if (res.data.status === 200) {
+                                this.getUser()
+                              } else {
+                                  message.error("删除失败")
+                              }
+                          })
                             }}>
                         <Button style={{margin:"1rem 0rem"}} type="danger" size="small">删除</Button>
                         </Popconfirm>
@@ -102,7 +107,7 @@ const {dataSource} =this.state
   //   });
   // }
       return(
-        <Table columns={columns} dataSource={dataSource} scroll={{ x: 1500, y: 600 }} />
+        <Table columns={columns} dataSource={dataSource} scroll={{ x: 1500, y: 600 }} rowKey="_id"/>
       )
     }
 }

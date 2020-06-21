@@ -20,3 +20,13 @@ export function UserApi(page=1){
 export function UserdelApi(id,data){
     return get(`/admin/removeUser?id=${id}`);
 }
+export function ChartsoneAPI(){
+    return get("/admin/userAnswerTop20");
+}
+
+export function ChartstwoAPI(){
+    return get("/admin/subareaImagesTop20");
+}
+export function ChartsthreeAPI(){
+    return get("/admin/goodAnswerTop20");
+}

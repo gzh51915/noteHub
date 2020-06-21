@@ -20,16 +20,6 @@ function index(props) {
         message.info(p.key)
       }
     }}>
-      <Menu.Item key="noti">
-        <a target="_blank" rel="noopener noreferrer" >
-          通知中心
-        </a>
-      </Menu.Item>
-      <Menu.Item key="setting">
-        <a target="_blank" rel="noopener noreferrer" >
-          设置
-        </a>
-      </Menu.Item>
       <Menu.Item key="logOut" >
         <a target="_blank" rel="noopener noreferrer" >
           退出
