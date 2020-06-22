@@ -1,5 +1,5 @@
 import Axios from "axios"
-Axios.defaults.baseURL = "http://10.3.135.11:4444/api"
+Axios.defaults.baseURL = "http://182.92.241.251:4000/api"
 export default function axios(url, data = {}, type = "GET") {
     if (type === "GET") {
         var dataStr = ""

@@ -23,7 +23,7 @@ export default class Navbar extends React.Component {
         super()
     }
     componentDidMount() {
-        this.props.history.push("/user")
+        this.props.history.push("/home")
     }
     render() {
         const pathname = this.props.location.pathname.split("/")[1]
@@ -150,7 +150,6 @@ export default class Navbar extends React.Component {
                         selected={pathname === "user"}
                         onPress={() => {
                             this.props.history.push("/user")
-
                         }}
                     >
                         <Switch>

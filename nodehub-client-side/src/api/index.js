@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let baseurl = 'http://10.3.135.11:4444/api'
+let baseurl = 'http://182.92.241.251:4000/api'
 axios.defaults.baseURL = baseurl;
 // 允许携带cookie
 axios.defaults.withCredentials = true

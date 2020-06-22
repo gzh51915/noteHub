@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import "./index.scss"
+import { connect } from "react-redux"
 import { Result, Icon, Button, WingBlank, WhiteSpace } from "antd-mobile"
-export default class index extends Component {
+class Myinfo extends Component {
     constructor(props) {
         super()
     }
     componentDidMount() {
         let token = localStorage.getItem('token')
-        if (token) {
+        let len = Object.keys(this.props.getUserData).length;
+        console.log(len);
+
+        if (token && len != 0) {
             this.props.history.push("/user/info")
         }
     }
@@ -32,3 +36,4 @@ export default class index extends Component {
         )
     }
 }
+export default connect((state) => ({ getUserData: state.getUserMsg }))(Myinfo)

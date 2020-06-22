@@ -65,7 +65,7 @@ const Myinfo = class index extends Component {
                         <div className="info-top">
                             <img src={require("assets/images/header.jpg")} alt="" className="my-img" />
                             <div className="my-info">
-                                <h1 className="my-name">{data.username}</h1>
+                                <h1 className="my-name">{data ? data.username : null}</h1>
                                 <div className="my-rank">
                                     <img src={require("assets/images/heart.png")} alt="" className="my-headerImg" /> <span>知乎盐值：301</span>
                                 </div>
