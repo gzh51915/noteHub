@@ -4,6 +4,7 @@ import App from './App';
 import { Provider } from "react-redux"
 import store from "./redux/store"
 import "assets/iconfonts/iconfont.css"
+import "assets/iconfont/iconfont.css"
 //入口文件
 ReactDOM.render(
   <Provider store={store}>

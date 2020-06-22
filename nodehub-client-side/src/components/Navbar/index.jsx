@@ -13,29 +13,31 @@ import Myinfo from "views/Myinfo"
 import Messages from "views/Messages"
 import Discovery from "views/Discovery"
 import Answer from "views/Answer"
-
+import Login from "views/Myinfo/Login"
+import Register from "views/Myinfo/Register"
+import SubareaDetail from "views/Discovery/SubareaDetail"
+import Info from "views/Myinfo/Info"
 import { Route, Switch } from "react-router-dom"
 export default class Navbar extends React.Component {
     constructor(props) {
         super()
     }
     componentDidMount() {
-        this.props.history.push("/home")
+        this.props.history.push("/user")
     }
     render() {
-        const pathname = this.props.location.pathname
+        const pathname = this.props.location.pathname.split("/")[1]
         return (
             <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }} >
                 <TabBar
                     unselectedTintColor="#949494"
                     tintColor="#33A3F4"
                     barTintColor="white"
-
                 >
                     <TabBar.Item
                         ref="sroll"
                         title="首页"
-                        key="Home"
+                        key="home"
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
@@ -50,7 +52,7 @@ export default class Navbar extends React.Component {
                         }}
                         />
                         }
-                        selected={pathname === "/home"}
+                        selected={pathname === "home"}
 
                         onPress={() => {
                             this.props.history.push("/home")
@@ -60,7 +62,7 @@ export default class Navbar extends React.Component {
                         <Switch>
                             <Route exact path="/home" component={Home}  ></Route>
                             <Route path="/home/questionsdetail/:id" component={Answer}></Route>
-                            <Route path="/home/addAnswer/:id" ></Route>
+
                         </Switch>
 
                     </TabBar.Item>
@@ -84,13 +86,17 @@ export default class Navbar extends React.Component {
                         title="发现"
                         key="discover"
 
-                        selected={pathname === "/discover"}
+                        selected={pathname === "discover"}
                         onPress={() => {
                             this.props.history.push("/discover")
 
                         }}
                     >
-                        <Route exact path="/discover" component={Discovery}  ></Route>
+                        <Switch>
+                            <Route exact path="/discover" component={Discovery}  ></Route>
+                            <Route path="/discover/SubareaDetail" component={SubareaDetail}></Route>
+                        </Switch>
+
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
@@ -110,28 +116,49 @@ export default class Navbar extends React.Component {
                             />
                         }
                         title="消息"
-                        key="Message"
+                        key="message"
 
-                        selected={pathname === "/message"}
+                        selected={pathname === "message"}
                         onPress={() => {
                             this.props.history.push("/message")
 
                         }}
                     >
-                        <Route exact path="/message" component={Messages}></Route>
+                        <Switch>
+                            <Route exact path="/message" component={Messages}></Route>
+                        </Switch>
                     </TabBar.Item>
                     <TabBar.Item
-                        icon={{ uri: `${my}` }}
-                        selectedIcon={{ uri: `${myactive}` }}
+                        icon={
+                            <div style={{
+                                width: '22px',
+                                height: '22px',
+                                background: `url(${my}) center center /  21px 21px no-repeat`
+                            }}
+                            />
+                        }
+                        selectedIcon={
+                            <div style={{
+                                width: '22px',
+                                height: '22px',
+                                background: `url(${myactive}) center center /  21px 21px no-repeat`
+                            }}
+                            />
+                        }
                         title="我的"
-                        key="Myinfo"
-                        selected={pathname === "/user"}
+                        key="user"
+                        selected={pathname === "user"}
                         onPress={() => {
                             this.props.history.push("/user")
 
                         }}
                     >
-                        <Route exact path="/user" component={Myinfo}></Route>
+                        <Switch>
+                            <Route exact path="/user" component={Myinfo}></Route>
+                            <Route path="/user/login" component={Login}></Route>
+                            <Route path="/user/register" component={Register}></Route>
+                            <Route path="/user/info" component={Info}></Route>
+                        </Switch>
                     </TabBar.Item>
                 </TabBar>
             </div >

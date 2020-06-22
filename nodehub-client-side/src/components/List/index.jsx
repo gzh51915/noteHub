@@ -26,7 +26,10 @@ class List extends Component {
     componentDidMount() {
         this.getData()
         let nav = document.querySelector('.am-tabs-pane-wrap-active')
+
         if (this.state.agree) {
+
+
             nav.onscroll = () => {
                 let scrollTop = nav.scrollTop
                 // 变量navHeight 是可视区的高度
@@ -51,7 +54,9 @@ class List extends Component {
                             })
                         } else {
                             Toast.info('数据加载完了', 2, null, false);
-                            nav = null;
+                            this.setState({
+                                agree: false
+                            })
                         }
                     })
                 }
@@ -60,6 +65,7 @@ class List extends Component {
 
     }
     getData = () => {
+
         let para = {};
         para.page = this.state.page;
         para.pagesize = this.state.pagesize;

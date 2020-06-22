@@ -1,0 +1,23 @@
+.subarea-container{
+    width: 100vw;
+}
+.subarea-container div{
+    margin-top: 10px;
+    float: left;
+    width: 33.33333%;
+    height: 16vh;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: #8c8c8c;
+    margin-bottom: 20px;
+}
+.subarea-container div img{
+    display: block;
+    border-radius: 50%;
+    width: 20vw;
+    height:20vw;
+    margin-bottom: 10px;
+}
