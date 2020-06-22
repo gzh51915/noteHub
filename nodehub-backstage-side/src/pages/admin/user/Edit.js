@@ -27,7 +27,7 @@ import { UserdelApi } from '../../../services/products'
                   onFinishFailed={onFinishFailed}
                 >
                   <Form.Item
-                    label="用户名"
+                    label="昵称"
                     name="nickname"
                     rules={[{ required: true, message: '请输入!' }]}
                   >
@@ -50,7 +50,7 @@ import { UserdelApi } from '../../../services/products'
                     <Input />
                   </Form.Item>
                   <Form.Item
-                    label="提问数"
+                    label="回答数"
                     name="answer"
                     rules={[{ required: true, message:  '请输入!' }]}
                   >

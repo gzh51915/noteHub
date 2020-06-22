@@ -14,7 +14,6 @@ export const mainRoutes = [{
     component:Login
 },{
     path:'/404',
-    
     component:PageNotFound
 }]
 

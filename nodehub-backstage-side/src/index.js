@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router,Switch,Route,Redirect} from 'react-router-dom'
+import {BrowserRouter as Router,Switch,Route,Redirect} from 'react-router-dom'
 import "antd/dist/antd.css";
 import './index.css';
 import App from './App';
