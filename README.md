@@ -12,6 +12,12 @@
     * api 接口
     * assets 资源文件
     * components 公共组件
+      *Header 头部组件
+      *List 列表组件
+      *NavBar 导航组件
+      *NotFound 404组件
+      *Search 搜索组件
+      
     * redux redux文件
     * utils 工具包
     * views 视图组件
