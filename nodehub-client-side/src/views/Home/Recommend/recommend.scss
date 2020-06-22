@@ -30,6 +30,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        padding: r(10) 0;
     span{
         font-size: r(35);
         font-weight: 600;
@@ -69,6 +70,7 @@
           width: 100%;
           font-size: r(30);
            margin-bottom: r(20);
+           line-height: r(50);
            span{
                font-size: r(35);
                color:  	#3CB371;

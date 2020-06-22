@@ -24,14 +24,15 @@ padding: 0 r(20);
         text-overflow: ellipsis;
         white-space: nowrap;
         border-bottom:1px solid #F5F5F5;
+        padding:r(20) 0;
     }
     
     .item-header{
-        height:r(40);
+        padding: r(20) 0;
         width: 100%;
         display: flex;
         justify-content: start;
-        margin-bottom: r(20);
+       
         align-items: center;
         img{
             vertical-align: baseline;
@@ -56,11 +57,11 @@ padding: 0 r(20);
           -webkit-box-orient:vertical;
           width: 100%;
           font-size: r(25);
-        
-         
+          line-height: r(50);
+          
       }   
       .bottom{
-          margin-top: r(20);
+         padding: r(10) 0;
              .approve{
         font-size: 12px;
             .icon-zan2{

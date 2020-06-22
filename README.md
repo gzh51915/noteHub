@@ -23,3 +23,8 @@
 
 !['notehub'](./img/home.png "home")
 !['notehub'](./img/recommend.png "recommend")
+!['notehub'](./img/login.png "recommend")
+!['notehub'](./img/register.png "recommend")
+!['notehub'](./img/login.png "recommend")
+!['notehub'](./img/pindao.png "recommend")
+!['notehub'](./img/pindaocontent.png "recommend")
